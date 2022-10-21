@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TesteController;
+use App\Http\Controllers\AuthorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/laravel', function () {
     return view('welcome');
 });
 
-Route::get('/teste', [TesteController::class, 'index']);
-Route::get('/testeWithView', [TesteController::class, 'viewReturn']);
+Route::get('/', [TesteController::class, 'index']);
+Route::post('/teste/save', [TesteController::class, 'store']);
+
+Route::get('/author/{id}', [AuthorController::class, 'show']);
+Route::get('/tests/author/{id}', [TesteController::class, 'byAuthor']);
+Route::get('/tests/type/{id}', [TesteController::class, 'byTestType']);
