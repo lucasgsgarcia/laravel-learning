@@ -23,5 +23,6 @@ Route::get('/', [TesteController::class, 'index']);
 Route::post('/teste/save', [TesteController::class, 'store']);
 
 Route::get('/author/{id}', [AuthorController::class, 'show']);
-Route::get('/tests/author/{id}', [TesteController::class, 'byAuthor']);
-Route::get('/tests/type/{id}', [TesteController::class, 'byTestType']);
+Route::get('/tests/author/{id}', [TesteController::class, 'searchTestByAuthorId']);
+Route::get('/tests/authorName/{name}', [TesteController::class, 'searchTestByAuthorName']);
+Route::get('/tests/type/{id}', [TesteController::class, 'searchTestByTestTypeId']);

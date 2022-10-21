@@ -16,8 +16,10 @@
     @csrf
     <h3>ID do Tipo do Teste:</h3>
     <input type="text" id="test_type_id" name="test_type_id"></br>
-    <h3>ID do Autor:</h3>
-    <input type="text" id="author_id" name="author_id"></br>
+    <h3>Nome do Autor:</h3>
+    <input type="text" id="author_name" name="author_name"></br>
+    <h3>Descrição:</h3>
+    <input type="text" id="description" name="description"></br>
     <button type="submit">Adicionar Teste</button>
 </form>
 </body>

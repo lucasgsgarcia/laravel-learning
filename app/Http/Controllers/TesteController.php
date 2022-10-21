@@ -18,31 +18,52 @@ class TesteController extends Controller
 
     public function store(Request $request){
         $test_type_id = $request->input('test_type_id');
-        $author_id = $request->input('author_id');
+        $description = $request->input('description');
+        $author_id = (new AuthorController)->searchAuthorIdByAuthorName($request->input('author_name'));
         $teste = new Teste();
         $teste->test_type_id = $test_type_id;
         $teste->author_id = $author_id;
+        $teste->description = $description;
         $teste->save();
 
         echo redirect('/');
     }
 
 
-    public function byAuthor($id)
+    public function searchTestByAuthorId($id)
     {
         $tests = Teste::where('author_id', $id)->get();
 
-        foreach ($tests as $test) {
-            echo "<h1>{$test}</h1>";
+        if ($tests != null) {
+            return $tests;
         }
+
+        return abort(404);
     }
 
-    public function byTestType($id)
+    public function searchTestByTestTypeId($id)
     {
         $tests = Teste::where('test_type_id', $id)->get();
 
-        foreach ($tests as $test) {
-            echo "<h1>{$test}</h1>";
+        if ($tests != null){
+            return $tests;
         }
+
+        return abort(404);
     }
+
+    public function searchTestByAuthorName($name)
+    {
+        $tests = Teste::where('author_id', function ($query) use ($name) {
+            $query->select('id')
+                ->from('authors')
+                ->where('author_name', 'like', '%' . $name . '%');
+        })->get();;
+
+        return $tests;
+    }
+
+
+
+
 }

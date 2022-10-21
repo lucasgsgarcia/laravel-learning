@@ -48,7 +48,10 @@ class AuthorController extends Controller
     {
         $author = Author::where('id', $id)->first();
 
-        dd($author);
+        echo "<h1>Author: </br>
+        {$author->author_name} </br>
+        {$author->email}</br>
+        </h1>";
     }
 
 
@@ -85,4 +88,11 @@ class AuthorController extends Controller
     {
         //
     }
+
+    public function searchAuthorIdByAuthorName($name)
+    {
+        $author = Author::where('author_name', $name)->first();
+        return $author->id;
+    }
+
 }

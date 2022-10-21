@@ -10,7 +10,7 @@ class Teste extends Model
 
     protected $fillable = [
         'test_type_id',
-        'author_id'
+        'description'
     ];
 
     protected $table = 'tests';
